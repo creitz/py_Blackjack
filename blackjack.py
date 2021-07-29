@@ -26,8 +26,8 @@ class BlackJack():
 
     def get_bet(self, player: Player):
         """
-        Prompts the user to enter a bet amount as an integer, and returns the amount
-        once an integer is input.
+        Prompts the user to enter a bet amount as an integer for the given player, and returns
+        the amount once an integer is input.
 
         Args:
             player (Player): The player for which to get the bet
@@ -39,6 +39,9 @@ class BlackJack():
                  .format(player.player_number, player.dollars_remaining))
         prompt = '$: '
         input_amt = get_integer_input(blurb=blurb, prompt=prompt)
+
+        # Make sure the user entered an amount <= the $ the player has left,
+        # or keep prompting until they do.
         while input_amt > player.dollars_remaining:
             blurb = ('Insufficent balance. Enter an amount < ${} for player {}'
                      .format(player.dollars_remaining, player.player_number))
